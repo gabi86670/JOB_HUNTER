@@ -25,3 +25,7 @@ ORM: Prisma
 Authentication: Clerk or Supabase Auth
 LLM: OpenAI Responses API or Anthropic
 Deployment: Vercel (frontend) + Railway/Fly.io (backend
+
+
+security concerns
+- pdf isnt malicious (ie someone telling the chatbot to ignore its commands)
