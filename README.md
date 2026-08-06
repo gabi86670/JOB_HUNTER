@@ -29,3 +29,9 @@ Deployment: Vercel (frontend) + Railway/Fly.io (backend
 
 security concerns
 - pdf isnt malicious (ie someone telling the chatbot to ignore its commands)
+
+
+things to add later:
+- username, passwords, encryption, caching
+- writing cover letters
+- fixing resumes 
