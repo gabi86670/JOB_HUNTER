@@ -12,9 +12,9 @@
 --  for user IDs, so we use them here too.
 CREATE TABLE users (
   id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
-  email TEXT NOT NULL,
-  name_first TEXT NOT NULL,
-  name_last TEXT NOT NULL,
+  email TEXT NOT NULL CHECK (length(email) <= 70),
+  name_first TEXT NOT NULL CHECK (length(name_first) <= 50),
+  name_last TEXT NOT NULL CHECK (length(name_last) <= 50),
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
