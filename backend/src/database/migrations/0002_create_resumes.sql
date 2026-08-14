@@ -1,11 +1,11 @@
 -- One user can have multiple resumes over time (updated CV, tailored
--- versions per application round) — this is one-to-many, not a column
+-- versions per application round) - this is one-to-many, not a column
 -- on `users`.
 --
 -- `experience`, `education`, and `projects` are stored as JSONB rather
 -- than normalized tables. These are read-mostly, displayed-to-the-user,
 -- variable-shaped data (a role might have 3 bullet points or 10; an
--- education entry might have a GPA or not) — normalizing them buys
+-- education entry might have a GPA or not) - normalizing them buys
 -- little query benefit and costs real schema rigidity. Skills are the
 -- one field the ranking engine actually needs to query/join against,
 -- so skills gets its own normalized tables (see 0003, 0004).
@@ -24,6 +24,8 @@ CREATE TABLE resumes (
   status TEXT NOT NULL DEFAULT 'pending'
     CHECK (status IN ('pending', 'parsing', 'parsed', 'failed')),
 
+-- JsonB holds semi-structured data - enables faster querying + data manipulation bc binary format
+-- enables varying experience, education + project info
   experience JSONB,
   education JSONB,
   projects JSONB,
