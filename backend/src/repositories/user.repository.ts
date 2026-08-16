@@ -17,7 +17,6 @@ interface UserRow {
 }
 
 export async function findUserById(id: string): Promise<User | null> {
-
     // $1 = id parsed in
     const res = await pool.query<UserRow>(
         "SELECT id, email, created_at, updated_at, name_first, name_last FROM users WHERE id = $1",
@@ -46,4 +45,24 @@ export async function findUserById(id: string): Promise<User | null> {
 
     return usr;
 
+};
+
+export async function createUser(id: string, email: string): Promise<User> {
+    const res = await pool.query<UserRow>(
+        "INSERT INTO users (id, email) values ($1, $2) RETURNING *",
+        [id, email]);
+
+    const row = res.rows[0];
+
+
+    const usr: User = {
+        id: row.id,
+        email: row.email,
+        createdAt: row.created_at,
+        updatedAt: row.updated_at,
+        nameFirst: row.name_first,
+        nameLast: row.name_last
+    };
+
+    return usr;
 };
