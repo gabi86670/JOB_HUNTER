@@ -1,11 +1,11 @@
 /**
- * Base class for all "expected" application errors — errors that represent
+ * Base class for all "expected" application errors - errors that represent
  * a known failure mode (bad input, missing resource, etc.) rather than a
  * bug. Each subclass carries an HTTP status code so the error-handling
  * middleware can map it to the right response without any if/else chain.
  *
- * Anything that ISN'T an AppError (a genuine bug, a null pointer, a DB
- * connection failure) falls through to a generic 500 in the middleware —
+ * Anything that ISNT an AppError (a genuine bug, a null pointer, a DB
+ * connection failure) falls through to a generic 500 in the middleware -
  * that distinction is what lets us return safe, specific messages for
  * expected errors while never leaking internal details for unexpected ones.
  */
@@ -28,8 +28,8 @@ export class ValidationError extends AppError {
   }
 }
 
-export class UnauthorizedError extends AppError {
-  constructor(message = 'Unauthorized') {
+export class UnauthorisedError extends AppError {
+  constructor(message = 'Unauthorised') {
     super(message, 401);
   }
 }
