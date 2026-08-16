@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { SUPABASE_URL, SUPABASE_SECRET_KEY } from '@/config/env.js';
+import { env } from '@/config/env.js';
 
 // A server-side Supabase client (used by both the middleware and, later, storage)
 // wraps Supabase's REST, Auth, and Storage APIs behind convenient JS method calls, 
@@ -8,6 +8,6 @@ import { SUPABASE_URL, SUPABASE_SECRET_KEY } from '@/config/env.js';
 
 // only one instance of it cause its just config + connection info so no need to recreate it
 
-export const supabaseClient = new createClient({
-    env.SUPABASE_URL, env.SUPABASE_SECRET_KEY
-});
+export const supabaseClient = createClient(
+     env.SUPABASE_URL, env.SUPABASE_SECRET_KEY
+);
