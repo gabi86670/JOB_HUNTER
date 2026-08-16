@@ -10,18 +10,25 @@ export async function findUserById(id: string): Promise<User | null> {
 
     // $1 = id parsed in
     const res = await pool.query(
-        "SELECT $1 FROM users u WHERE undefined.id = id",
+        "SELECT id, email, createdAt, updatedAt, name_first, name_last FROM users WHERE id = $1",
         [id]
     );
 
-    if (length(res.rows) === 0 ) {
+    if (res.rows.length === 0 ) {
         return null;
     }
 
     // row exists - map db row to user (email + id)
-    User usr = {
-        id: res.id;
-        email: res.email
+    
+    const row = res.rows[0];
+
+    const usr: User = {
+        id: row.id,
+        email: row.email,
+        createdAt: row.createdAt,
+        updatedAt: row.updatedAt,
+        name_first: row.name_first,
+        name_last: row.name_last
     };
 
     return usr;
