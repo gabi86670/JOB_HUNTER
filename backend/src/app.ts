@@ -6,6 +6,7 @@ import { env } from '@/config/env.js';
 import { logger } from '@/utils/logger.js';
 import { errorHandler } from '@/middleware/errorHandler.js';
 import { healthRouter } from '@/routes/health.routes.js';
+import { meRouter } from '@/routes/me.routes.js';
 
 /**
  * app.ts builds and returns the Express app but does NOT call app.listen().
@@ -26,6 +27,8 @@ export function createApp() {
   // Future routers get mounted here, e.g.:
   // app.use('/resume', resumeRouter);
   // app.use('/jobs', jobsRouter);
+
+  app.use(meRouter);
 
   app.use(errorHandler);
 
