@@ -1,6 +1,5 @@
 import  { pool } from '@/database/pool.js';
 import { User } from '@/types/database.types.js';
-import { NotFoundError } from '@/utils/errors.js';
 
 // repo legit just talks to table + returns typed objs
 // business logic using this happens in services
