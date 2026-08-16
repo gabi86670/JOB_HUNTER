@@ -11,7 +11,6 @@ meRouter.get('/me',
     (req, res) => {
 
     // at this pt user alr avaialble
-
     return res.status(200).json(req.user);
     
   }
