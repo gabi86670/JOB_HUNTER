@@ -53,7 +53,10 @@ export async function createUser(id: string, email: string): Promise<User> {
         [id, email]);
 
     const row = res.rows[0];
-
+    // plain error bc means smth went wrong w db or weird code err
+    if (!row) {
+        throw new Error('User insert returned no row — this should never happen');
+    }
 
     const usr: User = {
         id: row.id,
