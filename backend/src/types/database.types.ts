@@ -8,10 +8,10 @@
 export interface User {
   id: string;
   email: string;
+  nameFirst: string | null;
+  nameLast: string | null;
   createdAt: Date;
   updatedAt: Date;
-  name_last: string | null;
-  name_first: string | null;
 }
 
 export type ResumeStatus = 'pending' | 'parsing' | 'parsed' | 'failed';
