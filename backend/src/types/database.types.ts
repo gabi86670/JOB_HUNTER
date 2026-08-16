@@ -1,6 +1,6 @@
 /**
  * Hand-written types mirroring the DB schema (see database/migrations).
- * We're not generating these from an ORM — writing them by hand while the
+ * We're not generating these from an ORM - writing them by hand while the
  * schema is still small keeps the mental model of "what's actually in
  * Postgres" explicit, and repositories return exactly these shapes.
  */
@@ -8,9 +8,10 @@
 export interface User {
   id: string;
   email: string;
-  fullName: string | null;
   createdAt: Date;
   updatedAt: Date;
+  name_last: string | null;
+  name_first: string | null;
 }
 
 export type ResumeStatus = 'pending' | 'parsing' | 'parsed' | 'failed';
