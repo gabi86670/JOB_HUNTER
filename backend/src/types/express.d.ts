@@ -4,7 +4,6 @@ import { User } from '@/types/database.types.js';
 
 // declaration merging --> merging our stuff w 3rd party def
 declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace -- required by Express's own type-augmentation pattern
   namespace Express {
     interface Request {
       // your new field goes here
