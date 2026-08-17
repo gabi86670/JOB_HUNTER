@@ -1,6 +1,8 @@
 import type { Request, Response, NextFunction } from "express";
 import { supabaseClient } from '@/config/supabase.js';
 import { UnauthorisedError } from "@/utils/errors.js";
+import { getOrCreateUser } from "@/services/user/user.services.js";
+
 
 export  async function authMiddleware(req: Request, res: Response, next: NextFunction): Promise<void> {
     const authHeader = req.headers.authorization;
@@ -16,15 +18,14 @@ export  async function authMiddleware(req: Request, res: Response, next: NextFun
         throw new UnauthorisedError('Missing or invalid token');
     }
     const usr = validateToken.data.user;
-    const id = usr.id;
-    const email = usr.email;
 
     // attach to req + call next()
     // declare request contains user
-    req.user = { id, email };
+    // req.user = { id, email };
+    if (usr.email === undefined) {
+        throw new UnauthorisedError('An email was not provided - user needs an email on record!');
+    }
+    req.user = await getOrCreateUser(usr.id, usr.email);
 
     next();
-
-
-
 };

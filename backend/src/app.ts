@@ -7,6 +7,7 @@ import { logger } from '@/utils/logger.js';
 import { errorHandler } from '@/middleware/errorHandler.js';
 import { healthRouter } from '@/routes/health.routes.js';
 import { meRouter } from '@/routes/me.routes.js';
+import { resumeRouter } from './routes/resume.routes.js';
 
 /**
  * app.ts builds and returns the Express app but does NOT call app.listen().
@@ -29,6 +30,7 @@ export function createApp() {
   // app.use('/jobs', jobsRouter);
 
   app.use(meRouter);
+  app.use(resumeRouter);
 
   app.use(errorHandler);
 
