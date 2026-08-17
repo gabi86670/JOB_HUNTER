@@ -1,6 +1,7 @@
 import { createResume } from "@/repositories/resume.repository.js";
 import { Resume } from "@/types/database.types.js";
 import { supabaseClient } from '@/config/supabase.js';
+// import { logger } from "@/utils/logger.js";
 
 // this is called/protected by auth middleware
 export async function uploadResumeService(userId: string, file: Express.Multer.File): Promise<Resume> {
@@ -10,6 +11,7 @@ export async function uploadResumeService(userId: string, file: Express.Multer.F
     const res = await supabaseClient.storage.from('resumes').upload(storagePath, file.buffer, { contentType: file.mimetype });
         
     if (res.error) {
+        // logger.error({ error: res.error }, 'Storage upload failed');
         // never saved from db - plain errors bc went wrong on our end
         throw new Error('File could not be saved to storage...');
     }

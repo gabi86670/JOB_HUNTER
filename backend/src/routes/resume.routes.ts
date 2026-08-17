@@ -10,7 +10,7 @@ export const resumeRouter = Router();
 
 
 // to init the uploading of resume to the db bucket + local memory
-resumeRouter.post('/upload',
+resumeRouter.post('/resume/upload',
     // validate user before upload
     asyncHandler(authMiddleware),
     // check file can be uploaded
